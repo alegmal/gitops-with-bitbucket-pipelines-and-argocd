@@ -1,0 +1,39 @@
+{
+  "name": "awesome",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/server.js",
+    "build": "npx tsc",
+    "test": "mocha -r ts-node/register tests/**/*.test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/xxxxxxxx.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://bitbucket.org/xxxxxxxx"
+  },
+  "homepage": "https://bitbucket.org/xxxxxxxx",
+  "dependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^18.16.3",
+    "express": "^4.18.2",
+    "typescript": "^5.0.4"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.5",
+    "@types/mocha": "^10.0.1",
+    "@types/supertest": "^2.0.12",
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
+    "supertest": "^6.3.3",
+    "ts-node": "^10.9.1"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "description": ""
+}
