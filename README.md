@@ -59,7 +59,6 @@ Here are some additional functionalities and improvements you could consider:
 - Scanning code for security issues / lint
 - Adding more services
 - Incorporating and running tests in the CI/CD pipeline
-- Fixing `application repository` ci/cd to save version changes to local helm chart
 
 ---
 
