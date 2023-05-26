@@ -21,6 +21,7 @@
     "outDir": "./dist",
     "watch": false,
     "resolveJsonModule": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
   },
   "compileOnSave": false,
