@@ -22,21 +22,24 @@ definitions:
         - git config --global user.email "devops@example.com"
         - git config --global user.name "devops"
         - git config --global push.default simple
-        - git clone git@bitbucket.org:helm-charts.git
 
-        # update helm
+        # update current repository
         - echo "Updating values.yaml with new Docker image tag"
         - yq eval ".image.tag = \"$BITBUCKET_TAG\"" -i awesome/values.yaml
         - echo "Updating Chart.yaml with new version"
         - yq eval ".version = \"$BITBUCKET_TAG\"" -i awesome/Chart.yaml
         - yq eval ".appVersion = \"$BITBUCKET_TAG\"" -i awesome/Chart.yaml
-        - cp -R awesome helm-charts/
-        - cd helm-charts
         - git add --all
+        # [skip ci] prevents pipeline triggering
+        - git commit -m "Update Docker image tag and Helm chart version to ${BITBUCKET_TAG} [skip ci]"
+        - git push
 
-        # commit and push
+        # update helm charts repository
+        - git clone git@bitbucket.org:helm-charts.git
+        - cd helm-charts
+        - cp -R awesome helm-charts/
+        - git add --all
         - git commit -m "Update Docker image tag and Helm chart version to ${BITBUCKET_TAG}"
-        # get access token for authentication for push
         - ACCESS_TOKEN=$(curl -s -X POST -u "${CLIENT_ID}:${CLIENT_SECRET}" https://bitbucket.org/site/oauth2/access_token -d grant_type=client_credentials -d scopes="repository"| jq --raw-output '.access_token')
         - git push https://x-token-auth:"${ACCESS_TOKEN}"@bitbucket.org/xxxxxx/helm-charts.git
 pipelines:
